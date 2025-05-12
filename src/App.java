@@ -1,73 +1,76 @@
 import javax.swing.JOptionPane;
-
 public class App {
         public static void main(String[] args) throws Exception {
+                int servicos;
+                String[] nomesServicos = {"Cortes de grama", "Podas em geral", "Limpeza de terreno", "Plantio de grama", "Projeto de paisagismo"};
+                double[] valoresServicos = {150.00, 100.00, 100.00, 200.00, 300.00};
+                do {
+                        servicos = Integer.parseInt(JOptionPane.showInputDialog(null,
+                                        "Escolha um tipo de serviço: \n1-Cortes de grama R$150 \n2-Podas em geral R$100 \n3-Limpeza de terreno R$100 \n4-Plantio de grama R$200 \n5-Projeto de paisagismo R$300\n6-Finalizar",
+                                        "Tipos de serviço", JOptionPane.QUESTION_MESSAGE));
+                        if (servicos == 6) {
 
-                int jardinsGrandes = 0;
-                double[] areasJardins = new double[3];
+                                break;
 
-                JOptionPane.showMessageDialog(null, "Alô Jardim!!", null, JOptionPane.INFORMATION_MESSAGE);
-                JOptionPane.showMessageDialog(null, "Insira as informações dos seus jardins a seguir", null,
+                        }
+
+                        switch (servicos) {
+                                case 1:
+                                        JOptionPane.showMessageDialog(null, "Você escolheu cortes de grama",
+                                                        "Tipos de serviço",
+                                                        JOptionPane.INFORMATION_MESSAGE);
+
+                                        break;
+                                case 2:
+                                        JOptionPane.showMessageDialog(null, "Podas em geral", "Tipos de serviço",
+                                                        JOptionPane.INFORMATION_MESSAGE);
+
+                                        break;
+                                case 3:
+                                        JOptionPane.showMessageDialog(null, "Limpeza de terreno", "Tipos de serviço",
+                                                        JOptionPane.INFORMATION_MESSAGE);
+
+                                        break;
+
+                                case 4:
+                                        JOptionPane.showMessageDialog(null, "Plantio de grama", "Tipos de serviço",
+                                                        JOptionPane.INFORMATION_MESSAGE);
+
+                                        break;
+                                case 5:
+                                        JOptionPane.showMessageDialog(null, "Projeto de paisagismo", "Tipos de serviço",
+                                                        JOptionPane.INFORMATION_MESSAGE);
+
+                                        break;
+
+                        }
+                } while (servicos != 6);
+                JOptionPane.showMessageDialog(null, "Escolhas feitas com sucesso...", "Tipos de serviço",
                                 JOptionPane.INFORMATION_MESSAGE);
-                double larguraJardim1 = Double
-                                .parseDouble(JOptionPane.showInputDialog("Qual é a largura do seu jardim?"));
-                double comprimentoJardim1 = Double
-                                .parseDouble(JOptionPane.showInputDialog("Qual é o comprimento do seu Jardim?"));
-                areasJardins[0] = larguraJardim1 * comprimentoJardim1;
-                if (areasJardins[0] >= 100) {
-                        JOptionPane.showMessageDialog(null, "Seu jardim é grande", "Classificação do jardim",
-                                        JOptionPane.INFORMATION_MESSAGE);
-                        jardinsGrandes++;
-
-                } else {
-                        JOptionPane.showMessageDialog(null, "Seu jardim é pequeno", "Classificação do jardim",
-                                        JOptionPane.INFORMATION_MESSAGE);
-
-                }
-
-                double larguraJardim2 = Double
-                                .parseDouble(JOptionPane.showInputDialog("Qual é a largura do seu jardim?"));
-                double comprimentoJardim2 = Double
-                                .parseDouble(JOptionPane.showInputDialog("Qual é o comprimento do seu Jardim?"));
-                areasJardins[1] = larguraJardim2 * comprimentoJardim2;
-                if (areasJardins[1] >= 100) {
-                        JOptionPane.showMessageDialog(null, "Seu jardim é grande", "Classificação do jardim",
-                                        JOptionPane.INFORMATION_MESSAGE);
-                        jardinsGrandes++;
-
-                } else {
-                        JOptionPane.showMessageDialog(null, "Seu jardim é pequeno", "Classificação do jardim",
-                                        JOptionPane.INFORMATION_MESSAGE);
-                }
-
-                double larguraJardim3 = Double
-                                .parseDouble(JOptionPane.showInputDialog("Qual é a largura do seu jardim?"));
-                double comprimentoJardim3 = Double
-                                .parseDouble(JOptionPane.showInputDialog("Qual é o comprimento do seu Jardim?"));
-                areasJardins[2] = larguraJardim3 * comprimentoJardim3;
-                if (areasJardins[2] >= 100) {
-                        JOptionPane.showMessageDialog(null, "Seu jardim é grande", "Classificação do jardim",
-                                        JOptionPane.INFORMATION_MESSAGE);
-                        jardinsGrandes++;
-
-                } else {
-                        JOptionPane.showMessageDialog(null, "Seu jardim é pequeno", "Classificação do jardim",
-                                        JOptionPane.INFORMATION_MESSAGE);
-                }
-                String areasExibidas = "Áreas dos jardins:\n";
-                for (int i = 0; i < areasJardins.length; i++) {
-                        areasExibidas += "Jardim " + (i + 1) + ": " + areasJardins[i] + " m²\n";
-                }
-
-                double mediaJardins = (areasJardins[0] + areasJardins[1] + areasJardins[2]) / 3;
-
-                JOptionPane.showMessageDialog(null, "A média da área dos seus jardins é:" + mediaJardins,
-                                "Média dos jardins",
-                                JOptionPane.INFORMATION_MESSAGE);
-                JOptionPane.showMessageDialog(null, "Voce possui " + jardinsGrandes + " Jardins grandes",
-                                "Tamanho dos jardins", JOptionPane.INFORMATION_MESSAGE);
-                JOptionPane.showMessageDialog(null, areasExibidas, "Áreas dos jardins",
-                                JOptionPane.INFORMATION_MESSAGE);
+                                for (int i = 0; i < valoresServicos.length - 1; i++) {
+                                        for (int j = i + 1; j < valoresServicos.length; j++) {
+                                            if (valoresServicos[i] > valoresServicos[j]) {
+                                                // Troca os valores
+                                                double tempValor = valoresServicos[i];
+                                                valoresServicos[i] = valoresServicos[j];
+                                                valoresServicos[j] = tempValor;
+                            
+                                                // Troca os nomes correspondentes
+                                                String tempNome = nomesServicos[i];
+                                                nomesServicos[i] = nomesServicos[j];
+                                                nomesServicos[j] = tempNome;
+                                            }
+                                        }
+                                    }
+                            
+                                    // Exibindo os serviços ordenados por valor
+                                    StringBuilder listaOrdenada = new StringBuilder("Serviços ordenados por valor (crescente):\n");
+                                    for (int i = 0; i < nomesServicos.length; i++) {
+                                        listaOrdenada.append(nomesServicos[i] + " - R$" + valoresServicos[i] + "\n");
+                                    }
+                            
+                                    JOptionPane.showMessageDialog(null, listaOrdenada.toString(), "Serviços Ordenados", JOptionPane.INFORMATION_MESSAGE);
+                                }
+                            
 
         }
-}
