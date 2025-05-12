@@ -68,6 +68,29 @@ public class App {
                                 "Tamanho dos jardins", JOptionPane.INFORMATION_MESSAGE);
                 JOptionPane.showMessageDialog(null, areasExibidas, "Áreas dos jardins",
                                 JOptionPane.INFORMATION_MESSAGE);
+                double moda = 0;
+                boolean temModa = true;
+
+                if (areasJardins[0] == areasJardins[1] && areasJardins[1] == areasJardins[2]) {
+                        moda = areasJardins[0];
+                } else if (areasJardins[0] == areasJardins[1]) {
+                        moda = areasJardins[0];
+                } else if (areasJardins[0] == areasJardins[2]) {
+                        moda = areasJardins[0];
+                } else if (areasJardins[1] == areasJardins[2]) {
+                        moda = areasJardins[1];
+                } else {
+                        temModa = false;
+                }
+
+                // Exibir a moda
+                if (temModa) {
+                        JOptionPane.showMessageDialog(null, "A moda das áreas dos jardins é: " + moda + " m²",
+                                        "Moda das áreas", JOptionPane.INFORMATION_MESSAGE);
+                } else {
+                        JOptionPane.showMessageDialog(null, "Não há moda nas áreas dos jardins (todas são diferentes)",
+                                        "Moda das áreas", JOptionPane.INFORMATION_MESSAGE);
+                }
 
         }
 }
