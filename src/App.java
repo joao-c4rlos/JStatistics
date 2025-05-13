@@ -1,73 +1,31 @@
-import javax.swing.JOptionPane;
+import javax.swing.*;
 
 public class App {
-        public static void main(String[] args) throws Exception {
-
-                int jardinsGrandes = 0;
-                double[] areasJardins = new double[3];
-
-                JOptionPane.showMessageDialog(null, "Alô Jardim!!", null, JOptionPane.INFORMATION_MESSAGE);
-                JOptionPane.showMessageDialog(null, "Insira as informações dos seus jardins a seguir", null,
-                                JOptionPane.INFORMATION_MESSAGE);
-                double larguraJardim1 = Double
-                                .parseDouble(JOptionPane.showInputDialog("Qual é a largura do seu jardim?"));
-                double comprimentoJardim1 = Double
-                                .parseDouble(JOptionPane.showInputDialog("Qual é o comprimento do seu Jardim?"));
-                areasJardins[0] = larguraJardim1 * comprimentoJardim1;
-                if (areasJardins[0] >= 100) {
-                        JOptionPane.showMessageDialog(null, "Seu jardim é grande", "Classificação do jardim",
-                                        JOptionPane.INFORMATION_MESSAGE);
-                        jardinsGrandes++;
-
-                } else {
-                        JOptionPane.showMessageDialog(null, "Seu jardim é pequeno", "Classificação do jardim",
-                                        JOptionPane.INFORMATION_MESSAGE);
-
-                }
-
-                double larguraJardim2 = Double
-                                .parseDouble(JOptionPane.showInputDialog("Qual é a largura do seu jardim?"));
-                double comprimentoJardim2 = Double
-                                .parseDouble(JOptionPane.showInputDialog("Qual é o comprimento do seu Jardim?"));
-                areasJardins[1] = larguraJardim2 * comprimentoJardim2;
-                if (areasJardins[1] >= 100) {
-                        JOptionPane.showMessageDialog(null, "Seu jardim é grande", "Classificação do jardim",
-                                        JOptionPane.INFORMATION_MESSAGE);
-                        jardinsGrandes++;
-
-                } else {
-                        JOptionPane.showMessageDialog(null, "Seu jardim é pequeno", "Classificação do jardim",
-                                        JOptionPane.INFORMATION_MESSAGE);
-                }
-
-                double larguraJardim3 = Double
-                                .parseDouble(JOptionPane.showInputDialog("Qual é a largura do seu jardim?"));
-                double comprimentoJardim3 = Double
-                                .parseDouble(JOptionPane.showInputDialog("Qual é o comprimento do seu Jardim?"));
-                areasJardins[2] = larguraJardim3 * comprimentoJardim3;
-                if (areasJardins[2] >= 100) {
-                        JOptionPane.showMessageDialog(null, "Seu jardim é grande", "Classificação do jardim",
-                                        JOptionPane.INFORMATION_MESSAGE);
-                        jardinsGrandes++;
-
-                } else {
-                        JOptionPane.showMessageDialog(null, "Seu jardim é pequeno", "Classificação do jardim",
-                                        JOptionPane.INFORMATION_MESSAGE);
-                }
-                String areasExibidas = "Áreas dos jardins:\n";
-                for (int i = 0; i < areasJardins.length; i++) {
-                        areasExibidas += "Jardim " + (i + 1) + ": " + areasJardins[i] + " m²\n";
-                }
-
-                double mediaJardins = (areasJardins[0] + areasJardins[1] + areasJardins[2]) / 3;
-
-                JOptionPane.showMessageDialog(null, "A média da área dos seus jardins é:" + mediaJardins,
-                                "Média dos jardins",
-                                JOptionPane.INFORMATION_MESSAGE);
-                JOptionPane.showMessageDialog(null, "Voce possui " + jardinsGrandes + " Jardins grandes",
-                                "Tamanho dos jardins", JOptionPane.INFORMATION_MESSAGE);
-                JOptionPane.showMessageDialog(null, areasExibidas, "Áreas dos jardins",
-                                JOptionPane.INFORMATION_MESSAGE);
-
+    public static void main(String[] args) {
+        // Mensagem inicial para o usuário
+        JOptionPane.showMessageDialog(null, "Vamos calcular a área do seu jardim", "Área do seu jardim", JOptionPane.INFORMATION_MESSAGE);
+        
+        // Coleta as dimensões do jardim
+        double largura = 0;
+        double comprimento = 0;
+        
+        // Usando try-catch para garantir que os valores inseridos sejam válidos
+        try {
+            largura = Double.parseDouble(JOptionPane.showInputDialog(null, "Insira a largura do seu jardim:", "Área do seu jardim", JOptionPane.INFORMATION_MESSAGE));
+            comprimento = Double.parseDouble(JOptionPane.showInputDialog(null, "Insira o comprimento do seu jardim:", "Área do seu jardim", JOptionPane.INFORMATION_MESSAGE));
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "Por favor, insira números válidos para as dimensões.");
+            return; // Encerra o programa se houver erro
         }
+
+        // Calcula a área do jardim
+       
+
+        Jardim jardim = new Jardim(largura, comprimento);
+        double area = jardim.calcularArea();
+
+
+        // Exibe a área calculada
+        JOptionPane.showMessageDialog(null, "A área do seu jardim é: " + area + " metros quadrados.");
+    }
 }
